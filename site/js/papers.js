@@ -1,5 +1,5 @@
 // papers.js — 27 篇文獻（來源：docs/literature.md；所有 DOI 經 Crossref / PubMed / Europe PMC / OpenAlex API 核對）
-// nums: 論文原文（或摘要）給的數字；flag:true 表示數字為後續文獻轉述或原摘要無法取得，待確認（2026-09-19 已透過校內訂閱讀取 Li 2024 全文，該筆 flag 移除）
+// nums: 論文原文給的數字。flag:true 代表數字為後續文獻轉述或原文無法取得；2026-09-19 已透過校內訂閱讀取 Hassan 2016 ×3 與 Li 2024 全文，目前沒有任何一筆帶 flag
 export const PAPERS = [
   // ---- 方法奠基
   { g: 'method', tag: '方法 · 原始論文', year: 1998, authors: 'Huang NE, Shen Z, Long SR, Wu MC, Shih HH, Zheng Q, Yen NC, Tung CC, Liu HH',
@@ -28,13 +28,13 @@ export const PAPERS = [
   { g: 'staging', tag: '自動分期 · EMD + AdaBoost', year: 2016, authors: 'Hassan AR, Bhuiyan MIH',
     title: 'Automatic sleep scoring using statistical features in the EMD domain and ensemble methods',
     venue: 'Biocybern Biomed Eng 36(1):248–255', doi: '10.1016/j.bbe.2015.11.001',
-    sum: 'Hassan 系列第一篇。單通道 EEG 每 30 秒 epoch 做 EMD，對各 IMF 取統計動差（均值、變異數、偏態、峰度等）作為特徵，以 AdaBoost 分類。',
-    nums: [{ t: 'Sleep-EDF 準確率約 87%、κ 約 0.82', flag: true }] },
+    sum: 'Hassan 系列第一篇。單通道 EEG（Pz-Oz）每 30 秒 epoch 做 EMD，對各 IMF 取統計動差（均值、變異數、偏態、峰度）作為特徵，以 AdaBoost 決策樹分類；比較 10 種分類器，系集法明顯勝出。注意：文中的 κ 是峰度，論文並未報告 Cohen\'s κ。',
+    nums: [{ t: 'Sleep-EDF 六／五／四／三／二類準確率 88.62 / 90.11 / 91.20 / 93.55 / 97.73%' }] },
   { g: 'staging', tag: '自動分期 · CEEMDAN + Bagging', year: 2016, authors: 'Hassan AR, Bhuiyan MIH',
     title: 'Computer-aided sleep staging using Complete Ensemble Empirical Mode Decomposition with Adaptive Noise and bootstrap aggregating',
     venue: 'Biomed Signal Process Control 24:1–10', doi: '10.1016/j.bspc.2015.09.002',
-    sum: '把 EMD 換成 CEEMDAN、分類器換成 Bagging，特徵仍是 IMF 高階統計動差。是「EMD 特徵 + 系集學習做睡眠分期」路線最常被拿來當 baseline 的論文。',
-    nums: [{ t: 'Sleep-EDF 五類準確率 90.69%', flag: true }] },
+    sum: '把 EMD 換成 CEEMDAN（首次用於睡眠分期）、分類器換成 Bagging 決策樹，特徵仍是 IMF 高階統計動差。是「EMD 特徵 + 系集學習做睡眠分期」路線最常被拿來當 baseline 的論文，對 S1 與 REM 的偵測率特別高。',
+    nums: [{ t: 'Sleep-EDF 六／五／四／三／二類準確率 86.89 / 90.69 / 92.14 / 94.10 / 99.48%' }] },
   { g: 'staging', tag: '自動分期 · EEMD + RUSBoost', year: 2017, authors: 'Hassan AR, Bhuiyan MIH',
     title: 'Automated identification of sleep states from EEG signals by means of ensemble empirical mode decomposition and random under sampling boosting',
     venue: 'Comput Methods Programs Biomed 140:201–210', doi: '10.1016/j.cmpb.2016.12.015',
@@ -117,11 +117,11 @@ export const PAPERS = [
     venue: 'Med Eng Phys 36(8):1074–1080', doi: '10.1016/j.medengphy.2014.05.008',
     sum: '第一作者即 CEEMDAN 共同提出者。整夜 SpO2 做 EMD，血氧下降在特定 IMF 上呈現特定波形，用簡單門檻即可偵測，建構 ODI。',
     nums: [{ t: '敏感度 0.838、特異度 0.855' }] },
-  { g: 'osa', tag: 'OSA · ECG + ELM', year: 2016, authors: 'Hassan AR',
+  { g: 'osa', tag: 'OSA · ECG + ELM', year: 2016, authors: 'Hassan AR, Haque MA',
     title: 'Computer-aided obstructive sleep apnea identification using statistical features in the EMD domain and extreme learning machine',
     venue: 'Biomed Phys Eng Express 2(3):035003', doi: '10.1088/2057-1976/2/3/035003',
-    sum: '把 EMD 統計動差特徵套用到單導 ECG 的 OSA 逐分鐘辨識，分類器改用極限學習機，動機是穿戴式裝置只能用最少導程。',
-    nums: [{ t: '摘要未列具體數字', flag: true }] },
+    sum: '把 EMD 統計動差特徵套用到單導 ECG 的 OSA 逐分鐘辨識：PhysioNet apnea-ecg 35 位受試者、每分鐘一段，取前 7 個 IMF 的四種動差，Kruskal–Wallis 篩特徵後以極限學習機（ELM，1189 個隱藏神經元）分類，隨機半分訓練／測試重複 20 次取平均。',
+    nums: [{ t: '準確率 83.77%、敏感度 85.20%、特異度 82.79%' }, { t: '估算 AHI 與專家相關 r = 0.9987、平均絕對誤差 2.0' }] },
   { g: 'osa', tag: 'OSA · 雙變量 FA-EMD', year: 2020, authors: 'Tripathy RK, Gajbhiye P, Acharya UR',
     title: 'Automated sleep apnea detection from cardio-pulmonary signal using bivariate fast and adaptive EMD coupled with cross time–frequency analysis',
     venue: 'Comput Biol Med 120:103769', doi: '10.1016/j.compbiomed.2020.103769',

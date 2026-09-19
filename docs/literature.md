@@ -48,13 +48,13 @@
 - **標題**:Automatic sleep scoring using statistical features in the EMD domain and ensemble methods
 - **期刊**:Biocybernetics and Biomedical Engineering, 36(1): 248–255
 - **DOI**:[10.1016/j.bbe.2015.11.001](https://doi.org/10.1016/j.bbe.2015.11.001)
-- **重點**:Hassan 系列的第一篇。單通道 EEG 每 30 秒 epoch 做 EMD,對各 IMF 取統計動差(均值、變異數、偏態、峰度等)作為特徵,以 AdaBoost 系集分類。在 Sleep-EDF 上表現優於當時的小波/頻譜特徵法;後續綜述轉述其準確率約 87%、Cohen's κ 約 0.82(數字為後續文獻轉述,原摘要未能直接開啟)。
+- **重點**:Hassan 系列的第一篇。單通道 EEG 每 30 秒 epoch 做 EMD,對各 IMF 取統計動差(均值、變異數、偏態、峰度等)作為特徵,以 AdaBoost 系集分類。比較 Naive Bayes、判別分析、神經網路、kNN、SVM、LS-SVM、Bagging、AdaBoost 等 10 種分類器,系集法明顯勝出。Sleep-EDF 六/五/四/三/二類分期準確率(AdaBoost)為 **88.62% / 90.11% / 91.20% / 93.55% / 97.73%**,且 S1 偵測率優於多數既有方法。注意:文中的 κ 指峰度(kurtosis),論文並未報告 Cohen's κ;之前轉述的「κ 約 0.82」在原文找不到,已移除。(全文於 2026-09-19 經校內訂閱讀取。)
 
 ### 7. Hassan AR, Bhuiyan MIH (2016)
 - **標題**:Computer-aided sleep staging using Complete Ensemble Empirical Mode Decomposition with Adaptive Noise and bootstrap aggregating
 - **期刊**:Biomedical Signal Processing and Control, 24: 1–10
 - **DOI**:[10.1016/j.bspc.2015.09.002](https://doi.org/10.1016/j.bspc.2015.09.002)
-- **重點**:把 EMD 換成 CEEMDAN(解決模態混疊、保證完備)、分類器換成 Bagging。特徵仍是 IMF 的高階統計動差。Sleep-EDF 五類分期準確率 90.69%(後續文獻轉述),被引用超過 270 次,是「EMD 特徵 + 系集學習做睡眠分期」路線最常被拿來當 baseline 的論文。
+- **重點**:把 EMD 換成 CEEMDAN(解決模態混疊、保證完備)、分類器換成 Bagging。特徵仍是 IMF 的高階統計動差。首次把 CEEMDAN 用於睡眠分期。Sleep-EDF 六/五/四/三/二類分期準確率(Bagging)為 **86.89% / 90.69% / 92.14% / 94.10% / 99.48%**,對 S1 與 REM 的偵測率特別高(全文於 2026-09-19 經校內訂閱讀取)。被引用超過 270 次,是「EMD 特徵 + 系集學習做睡眠分期」路線最常被拿來當 baseline 的論文。
 
 ### 8. Hassan AR, Bhuiyan MIH (2017)
 - **標題**:Automated identification of sleep states from EEG signals by means of ensemble empirical mode decomposition and random under sampling boosting
@@ -158,11 +158,11 @@
 - **DOI**:[10.1016/j.medengphy.2014.05.008](https://doi.org/10.1016/j.medengphy.2014.05.008)
 - **重點**:第一作者即 CEEMDAN 的共同提出者。對整夜 SpO2 做 EMD,血氧下降(desaturation)在特定 IMF 上呈現非常特定的波形,用簡單門檻與規則即可偵測,建構氧氣飽和度下降指數(ODI)。OSAHS 篩檢敏感度 0.838、特異度 0.855,優於標準的血氧下降偵測法。
 
-### 24. Hassan AR (2016)
+### 24. Hassan AR, Haque MA (2016)
 - **標題**:Computer-aided obstructive sleep apnea identification using statistical features in the EMD domain and extreme learning machine
 - **期刊**:Biomedical Physics & Engineering Express, 2(3): 035003
 - **DOI**:[10.1088/2057-1976/2/3/035003](https://doi.org/10.1088/2057-1976/2/3/035003)
-- **重點**:把 Hassan 睡眠分期的 EMD 統計動差特徵套用到單導 ECG 的 OSA 逐分鐘辨識,分類器改用極限學習機(ELM),動機是穿戴式裝置只能用最少導程。作者稱準確率優於既有方法(摘要未列出具體數字)。
+- **重點**:把 Hassan 睡眠分期的 EMD 統計動差特徵套用到單導 ECG 的 OSA 逐分鐘辨識,分類器改用極限學習機(ELM),動機是穿戴式裝置只能用最少導程。資料為 PhysioNet apnea-ecg 35 位受試者(AHI 0–93.5),每 1 分鐘一段、100 Hz;取前 7 個 IMF 的均值、變異數、偏態、峰度共 28 個特徵,以 Kruskal–Wallis 檢定篩選後用 ELM(sigmoid、1189 個隱藏神經元)分類,隨機半分訓練/測試重複 20 次取平均。**準確率 83.77%、敏感度 85.20%、特異度 82.79%**、PPV 85.36%、NPV 81.22%;由逐分鐘結果估算 AHI 與專家標記的 Pearson r = 0.9987、平均絕對誤差 2.0。比較的 9 種分類器中 ELM 最高(AdaBoost 80.07%、Bagging 79.82%)。(全文於 2026-09-19 經校內訂閱讀取。)
 
 ### 25. Tripathy RK, Gajbhiye P, Acharya UR (2020)
 - **標題**:Automated sleep apnea detection from cardio-pulmonary signal using bivariate fast and adaptive EMD coupled with cross time–frequency analysis
@@ -218,5 +218,5 @@
 
 ## 四、查證備註
 - 所有 DOI 均以 Crossref 或 PubMed 回傳的 metadata 確認;沒有任何 DOI 是推測的。
-- 第 6、7 篇(Hassan 2016 兩篇)的準確率數字為後續綜述轉述,原始摘要因出版社限制未能直接開啟;第 16 篇(Li 2024)與第 24 篇(Hassan 2016 OSA)摘要未列出具體效能數字。
+- 第 6、7、16、24 篇原本因出版社限制只能轉述或無數字;2026-09-19 已透過陽明交大校內訂閱讀取全文並以原文數字取代,其中第 6 篇原轉述的「Cohen's κ 約 0.82」在原文中不存在(文中 κ 為峰度),已刪除。
 - 第 12 篇(Guo 2022)Scientific Reports 卷號為 12,文章編號未另行確認,以 DOI 為準。

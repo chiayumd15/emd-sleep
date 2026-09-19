@@ -259,7 +259,7 @@
 <section class="chapter fade" id="lit" data-title="文獻回顧">
   <div class="kicker">07 · 文獻</div>
   <h2>文獻回顧：EMD 在睡眠研究裡的 27 篇論文</h2>
-  <p class="intro">全部書目資料皆以 Crossref、PubMed、Europe PMC 或 OpenAlex 的 API 回傳結果核對，沒有任何一個 DOI 是推測的。凡是效能數字來自後續文獻轉述、或原始摘要無法取得者，都以<span class="num flag" style="display:inline-block;font-family:var(--font-mono);font-size:.78rem;border:1px dashed var(--series-4);padding:0 6px;border-radius:6px;margin:0 4px">虛線框</span>標示。</p>
+  <p class="intro">全部書目資料皆以 Crossref、PubMed、Europe PMC 或 OpenAlex 的 API 回傳結果核對，沒有任何一個 DOI 是推測的。效能數字一律取自論文原文；四篇原本只能轉述或摘要不公開的（Hassan 2016 ×3、Li 2024），已於 2026-09-19 透過校內訂閱讀取全文核對，其中一筆轉述的「Cohen's κ ≈ 0.82」在原文中並不存在，已刪除。若日後再出現無法核對的數字，會以<span class="num flag" style="display:inline-block;font-family:var(--font-mono);font-size:.78rem;border:1px dashed var(--series-4);padding:0 6px;border-radius:6px;margin:0 4px">虛線框</span>標示。</p>
   <div class="controls" style="margin-bottom:6px">
     <div class="seg" id="lit-filter" role="group">
       <button class="active" data-v="all">全部</button>
@@ -351,7 +351,7 @@
   <p class="small">這份作業要求「認真跟 AI 討論」。以下是討論中真正改變了做法的幾個節點，按時間順序。</p>
   <ol class="small" style="line-height:1.9">
     <li><strong>示範資料要真實，不要合成。</strong>最初的計畫是用正弦波疊出「像 N2 的訊號」。討論後決定：解釋一個「讓資料自己說話」的演算法，卻餵它人造資料，說服力不足；改用 PhysioNet 公開的整夜 PSG，並把選 epoch 的規則寫成程式、公開參數。合成訊號只留在兩處概念示意（chirp、間歇快波），且明確標示。</li>
-    <li><strong>有多少證據說多少話。</strong>文獻由 AI 先搜尋，再逐篇用 Crossref／PubMed API 核對 DOI；查不到原始摘要的數字一律標「轉述／待確認」而不是拿掉或美化。這也是為什麼文獻區會出現虛線框。</li>
+    <li><strong>有多少證據說多少話。</strong>文獻由 AI 先搜尋，再逐篇用 Crossref／PubMed API 核對 DOI；查不到原始摘要的數字先標「轉述／待確認」而不是拿掉或美化，之後再用學校訂閱讀全文逐一核實——結果真的抓到一個轉述錯誤（把峰度 κ 當成 Cohen's κ）。</li>
     <li><strong>演算法以原文為準。</strong>SD 準則、IMF 兩條件、正交性指標都回到 Huang 1998 的章節與式號；原文沒規定的（端點處理）明說是實作選擇。</li>
     <li><strong>把限制做成互動。</strong>與其用文字寫「EMD 有可重現性問題」，不如給一個 SD 滑桿讓人親手拉出不同結果；與其寫「模態混疊」，不如讓人看噪音把它撐開。</li>
     <li><strong>整夜資料只做描述，不做分類。</strong>一個人一夜的資料訓練分類器沒有意義，也容易誤導；所以第 6 節只呈現特徵與分期的關係，並在顯眼處寫明它不是什麼。</li>
