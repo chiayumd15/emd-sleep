@@ -1,5 +1,5 @@
 // papers.js — 27 篇文獻（來源：docs/literature.md；所有 DOI 經 Crossref / PubMed / Europe PMC / OpenAlex API 核對）
-// nums: 論文原文（或摘要）給的數字；flag:true 表示數字為後續文獻轉述或原摘要無法取得，待確認
+// nums: 論文原文（或摘要）給的數字；flag:true 表示數字為後續文獻轉述或原摘要無法取得，待確認（2026-09-19 已透過校內訂閱讀取 Li 2024 全文，該筆 flag 移除）
 export const PAPERS = [
   // ---- 方法奠基
   { g: 'method', tag: '方法 · 原始論文', year: 1998, authors: 'Huang NE, Shen Z, Long SR, Wu MC, Shih HH, Zheng Q, Yen NC, Tung CC, Liu HH',
@@ -77,8 +77,8 @@ export const PAPERS = [
   { g: 'spindle', tag: '紡錘波偵測 · TEO + EMD', year: 2024, authors: 'Li Y, Song K, Zhang Y, Karray F',
     title: 'Method and system for automated detection of sleep spindles using a single EEG channels based TEO and EMD',
     venue: 'Expert Syst Appl 249:123661', doi: '10.1016/j.eswa.2024.123661',
-    sum: '指出多數自動偵測法假設訊號平穩、忽略紡錘波振幅劇烈變化的非平穩資訊；以 Teager 能量算子配合 EMD 在單通道 EEG 上定位紡錘波起訖。',
-    nums: [{ t: '效能數字待確認（摘要未開放）', flag: true }] },
+    sum: '單通道 EEG（Cz-A1／C3-A1）先做 Teager 能量算子抓振幅突變，再以 EMD 第一個 IMF 的上下包絡設自適應門檻，精確定位紡錘波起訖；候選段限 0.5–3 秒。在 DREAMS 紡錘波資料庫（8 位受試者）上以專家標記為金標準，敏感度高於 Mölle、Martin、小波與純 EMD 法。',
+    nums: [{ t: 'DREAMS 準確率 91.83%±1.1%' }, { t: '敏感度 83.38%±9.32%、特異度 94.12%±3.46%' }, { t: '純 EMD 敏感度 78.74%，加 TEO 後 83.38%' }] },
 
   // ---- 台灣／黃鍔團隊：微結構與腦心交互
   { g: 'tw', tag: '台灣團隊 · EEG × HRV', year: 2013, authors: 'Yeh JR, Peng CK, Lo MT, Yeh CH, Chen SC, Wang CY, Lee PL, Kang JH',
