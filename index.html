@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EMD 與睡眠：把腦波拆回它自己的節奏</title>
+<meta name="theme-color" content="#070b14">
 <meta name="description" content="用真實 PSG 資料，在瀏覽器裡一步步執行黃鍔院士的經驗模態分解（EMD）與 Hilbert–Huang 轉換，解釋它在睡眠研究中的意義。27 篇文獻皆經 DOI 核對。">
 <meta property="og:title" content="EMD 與睡眠：把腦波拆回它自己的節奏">
 <meta property="og:description" content="互動演算法網站：真實睡眠腦波、逐步 sifting、Hilbert 譜 vs. 時頻圖、EEMD、整夜資料與 27 篇核對過的文獻。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 18c4-14 6 14 10 0s6 14 10 0 4 14 8 0' fill='none' stroke='%231c5cab' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <script>
-  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  try { const t = localStorage.getItem('theme'); document.documentElement.dataset.theme = (t === 'light') ? 'light' : 'dark'; } catch (e) { document.documentElement.dataset.theme = 'dark'; }
 </script>
 </head>
 <body>

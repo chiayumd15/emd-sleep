@@ -178,7 +178,14 @@ function attachHover(canvas, fn) {
 
 // 單色序列 colormap（surface → 深藍），可傳入自訂 stops
 export function makeCmap(stops) {
-  const parse = c => { const m = c.match(/#([0-9a-f]{6})/i); const v = parseInt(m[1], 16); return [(v >> 16) & 255, (v >> 8) & 255, v & 255]; };
+  const parse = c => {
+    c = (c || '').trim();
+    let m = c.match(/#([0-9a-f]{6})/i);
+    if (m) { const v = parseInt(m[1], 16); return [(v >> 16) & 255, (v >> 8) & 255, v & 255]; }
+    m = c.match(/rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i);
+    if (m) return [+m[1], +m[2], +m[3]];
+    return [0, 0, 0];
+  };
   const rgb = stops.map(parse);
   return t => {
     t = Math.min(1, Math.max(0, t)) * (rgb.length - 1);
@@ -198,7 +205,7 @@ export function heatmap(canvas, grid, opts) {
   const pad = { l: 44, r: 10, t: opts.title ? 22 : 8, b: opts.xLabel ? 30 : 18 };
   const pw = w - pad.l - pad.r, ph = h - pad.t - pad.b;
   const { nF, nT } = opts;
-  const stops = opts.cmapStops || [T.surface, css('--heat-1'), css('--heat-2'), css('--heat-3'), css('--heat-4')];
+  const stops = opts.cmapStops || [css('--heat-0') || T.surface, css('--heat-1'), css('--heat-2'), css('--heat-3'), css('--heat-4')];
   const cmap = makeCmap(stops);
   let vmax = opts.vmax;
   if (!vmax) { const sorted = Float64Array.from(grid).sort(); vmax = sorted[Math.floor(sorted.length * 0.995)] || 1; }
