@@ -1,0 +1,58 @@
+{
+ "epoch": "N3",
+ "n": 3000,
+ "py_n_imf": 7,
+ "js_n_imf": 7,
+ "compared": 7,
+ "max_abs_diff_uV": 7.904787935331115e-14,
+ "signal_std_uV": 30.552574053500887,
+ "date": "2026-09-19",
+ "rows": [
+  {
+   "epoch": "W",
+   "n": 3000,
+   "py_n_imf": 7,
+   "js_n_imf": 7,
+   "compared": 7,
+   "max_abs_diff_uV": 4.973799150320701e-14,
+   "signal_std_uV": 16.49691674852001
+  },
+  {
+   "epoch": "N1",
+   "n": 3000,
+   "py_n_imf": 7,
+   "js_n_imf": 7,
+   "compared": 7,
+   "max_abs_diff_uV": 6.039613253960852e-14,
+   "signal_std_uV": 15.943049972147739
+  },
+  {
+   "epoch": "N2",
+   "n": 3000,
+   "py_n_imf": 7,
+   "js_n_imf": 7,
+   "compared": 7,
+   "max_abs_diff_uV": 3.552713678800501e-14,
+   "signal_std_uV": 12.41472615272148
+  },
+  {
+   "epoch": "N3",
+   "n": 3000,
+   "py_n_imf": 7,
+   "js_n_imf": 7,
+   "compared": 7,
+   "max_abs_diff_uV": 7.904787935331115e-14,
+   "signal_std_uV": 30.552574053500887
+  },
+  {
+   "epoch": "REM",
+   "n": 3000,
+   "py_n_imf": 7,
+   "js_n_imf": 7,
+   "compared": 7,
+   "max_abs_diff_uV": 1.7763568394002505e-14,
+   "signal_std_uV": 9.865487678564095
+  }
+ ],
+ "note": "同一 epoch、同一套規則（SD<0.2、自然三次樣條、鏡射 2 個極值），JS 與 Python 逐點比較前 compared 個 IMF 的最大絕對差"
+}

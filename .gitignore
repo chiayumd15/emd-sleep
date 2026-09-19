@@ -1,0 +1,6 @@
+# PhysioNet 原始 EDF（47 MB，依 README 自行下載）
+data/raw/*.edf
+# 交叉驗證的中間檔（node scripts/xcheck_js.mjs 可重建）
+data/xcheck_js.json
+__pycache__/
+.DS_Store
