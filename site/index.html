@@ -54,7 +54,7 @@
     <div><b>資料</b> PhysioNet Sleep-EDF（開放授權）</div>
     <div><b>演算法</b> Huang et al. 1998 原始 sifting 程序</div>
     <div><b>文獻</b> 27 篇，DOI 逐篇核對</div>
-    <div><b>用途</b> 9/24 黃鍔院士演講預習</div>
+    <div><b>實作</b> 瀏覽器端純 JavaScript，無外部函式庫</div>
   </div>
 </section>
 
@@ -276,9 +276,9 @@
 </section>
 
 <!-- ================= 8 ================= -->
-<section class="chapter fade" id="s8" data-title="意義、限制與問題">
+<section class="chapter fade" id="s8" data-title="意義、限制與開放問題">
   <div class="kicker">08 · 所以呢</div>
-  <h2>意義、限制，以及帶去 9/24 演講的問題</h2>
+  <h2>意義、限制，以及仍然開放的問題</h2>
 
   <h3>EMD 為什麼適合睡眠訊號</h3>
   <ul>
@@ -308,22 +308,23 @@
     </tbody>
   </table>
 
-  <div class="warn"><b>一個查證後的空白。</b>截至 2026 年 9 月 19 日、在本站的查證範圍內，我們<b>沒有找到</b>以 Holo-Hilbert 譜分析（HHSA）直接分析睡眠 EEG（例如慢波–紡錘波耦合、CAP）並發表於期刊的論文；HHSA 的生醫應用目前集中在麻醉、聽覺穩態反應與認知退化。Yeh &amp; Shi 2018 用遮罩 EMD 做 CAP 的相位–振幅耦合，是最接近的一步。這可能是我們查漏，也可能是真的缺口——正好可以在演講上問。</div>
+  <div class="warn"><b>一個查證後的空白。</b>截至 2026 年 9 月 19 日、在本站的查證範圍內，我們<b>沒有找到</b>以 Holo-Hilbert 譜分析（HHSA）直接分析睡眠 EEG（例如慢波–紡錘波耦合、CAP）並發表於期刊的論文；HHSA 的生醫應用目前集中在麻醉、聽覺穩態反應與認知退化。Yeh &amp; Shi 2018 用遮罩 EMD 做 CAP 的相位–振幅耦合，是最接近的一步。這可能是查證的遺漏，也可能是真的缺口。</div>
 
-  <h3>可以帶去演講的問題</h3>
+  <h3>仍然開放的問題</h3>
+  <p class="small">以下幾個問題，在本站查證的文獻範圍內沒有明確共識，或答案會直接影響方法怎麼用。</p>
   <div class="faq">
     <details><summary>HHSA 把 AM 與 FM 分開展開，在睡眠上最該先拿來看什麼？</summary><div class="a">慢波（0.5–2 Hz）調變紡錘波（11–16 Hz）振幅，是 NREM 記憶固化研究的核心現象；它是乘法式過程，理論上正是 HHSA 的主場。目前的 PAC 研究多用帶通濾波加 Hilbert，濾波器邊界是人為決定的。</div></details>
-    <details><summary>停止準則與端點處理有沒有「建議標準」？</summary><div class="a">Huang 1998 給的是 SD 0.2–0.3 的經驗範圍；後來也有 S-number 準則等。不同實作結果不同，跨研究比較困難。演講者本人怎麼看這件事？</div></details>
-    <details><summary>EEMD 的系集數與噪音振幅要怎麼選？</summary><div class="a">Wu &amp; Huang 2009 給了噪音振幅約 0.2 倍標準差、系集數數百的經驗值，並推導系集誤差 ∝ ε/√N。臨床上整夜多導 PSG 的計算成本能不能接受？</div></details>
+    <details><summary>停止準則與端點處理有沒有「建議標準」？</summary><div class="a">Huang 1998 給的是 SD 0.2–0.3 的經驗範圍；後來也有 S-number 準則等。不同實作結果不同，跨研究比較因此困難；這是 EMD 至今最常被批評的一點。</div></details>
+    <details><summary>EEMD 的系集數與噪音振幅要怎麼選？</summary><div class="a">Wu &amp; Huang 2009 給了噪音振幅約 0.2 倍標準差、系集數數百的經驗值，並推導系集誤差 ∝ ε/√N。但整夜多導 PSG 的計算成本是否還能接受，文獻少有實測。</div></details>
     <details><summary>單導額頭 EEG 加 EMD 特徵，離「居家睡眠分期」還有多遠？</summary><div class="a">Liu et al. 2021 在三個資料庫上得到前額導極最好的結果。這對穿戴式裝置與自製腦波儀是好消息，但跨受試者的泛化（Tripathy 2020 顯示 subject-specific 驗證會掉 10 個百分點）仍是問題。</div></details>
-    <details><summary>Guo 等人 2022 用 EMD 主張 NREM 是「SWS / 非 SWS」雙穩態，而不是 N1/N2/N3 三段。演講者同意嗎？</summary><div class="a">如果同意，AASM 分期作為金標準的地位會被質疑；那麼 EMD 特徵做「自動分期」時，是該去逼近人工分期，還是該去發現新的狀態？</div></details>
+    <details><summary>Guo 等人 2022 用 EMD 主張 NREM 是「SWS / 非 SWS」雙穩態，而不是 N1/N2/N3 三段。</summary><div class="a">若此說成立，AASM 分期作為金標準的地位就會被質疑；那麼 EMD 特徵做「自動分期」時，究竟該去逼近人工分期，還是該去發現資料本身的狀態結構？</div></details>
   </div>
 </section>
 
 <!-- ================= 9 ================= -->
 <section class="chapter fade" id="method" data-title="方法與透明度">
   <div class="kicker">09 · 方法與透明度</div>
-  <h2>資料、參數、驗證，以及與 AI 討論的紀錄</h2>
+  <h2>資料、參數與驗證</h2>
 
   <h3>資料</h3>
   <table class="tbl" id="method-data">
@@ -348,15 +349,15 @@
     </tbody>
   </table>
 
-  <h3>與 AI 討論後做的決定</h3>
-  <p class="small">這份作業要求「認真跟 AI 討論」。以下是討論中真正改變了做法的幾個節點，按時間順序。</p>
+  <h3>幾個方法上的取捨</h3>
+  <p class="small">這個網站有幾處可以走捷徑而沒有走。以下說明為什麼。</p>
   <ol class="small" style="line-height:1.9">
-    <li><strong>示範資料要真實，不要合成。</strong>最初的計畫是用正弦波疊出「像 N2 的訊號」。討論後決定：解釋一個「讓資料自己說話」的演算法，卻餵它人造資料，說服力不足；改用 PhysioNet 公開的整夜 PSG，並把選 epoch 的規則寫成程式、公開參數。合成訊號只留在兩處概念示意（chirp、間歇快波），且明確標示。</li>
-    <li><strong>有多少證據說多少話。</strong>文獻由 AI 先搜尋，再逐篇用 Crossref／PubMed API 核對 DOI；查不到原始摘要的數字先標「轉述／待確認」而不是拿掉或美化，之後再用學校訂閱讀全文逐一核實——結果真的抓到一個轉述錯誤（把峰度 κ 當成 Cohen's κ）。</li>
-    <li><strong>演算法以原文為準。</strong>SD 準則、IMF 兩條件、正交性指標都回到 Huang 1998 的章節與式號；原文沒規定的（端點處理）明說是實作選擇。</li>
-    <li><strong>把限制做成互動。</strong>與其用文字寫「EMD 有可重現性問題」，不如給一個 SD 滑桿讓人親手拉出不同結果；與其寫「模態混疊」，不如讓人看噪音把它撐開。</li>
-    <li><strong>整夜資料只做描述，不做分類。</strong>一個人一夜的資料訓練分類器沒有意義，也容易誤導；所以第 6 節只呈現特徵與分期的關係，並在顯眼處寫明它不是什麼。</li>
-    <li><strong>承認查證後的空白。</strong>沒找到 HHSA 直接用在睡眠 EEG 的期刊論文，就寫「沒找到」，並轉成演講上可以問的問題。</li>
+    <li><strong>示範資料用真實訊號，不用合成。</strong>用正弦波疊出「像 N2 的訊號」會簡單得多，但要解釋一個「讓資料自己說話」的演算法，卻餵它人造資料，說服力不足。這裡改用 PhysioNet 公開的整夜 PSG，並把挑選 epoch 的規則寫成程式、公開參數。合成訊號只留在兩處概念示意（chirp、間歇快波），且都明確標示。</li>
+    <li><strong>有多少證據說多少話。</strong>27 篇文獻逐篇以 Crossref／PubMed API 核對 DOI；效能數字一律回到論文原文，查不到全文的先標「待確認」而不是拿掉或美化，之後再逐一補讀核實。這個流程真的抓到一個長期被轉述的錯誤：Hassan 2016 常被引用的「Cohen's κ ≈ 0.82」，原文中的 κ 其實是峰度（kurtosis），該文並未報告 Cohen's κ。</li>
+    <li><strong>演算法以原文為準。</strong>SD 停止準則、IMF 的兩個條件、正交性指標都回到 Huang 1998 的章節與式號；原文沒有規定的部分（例如端點處理）明說是實作選擇，不假裝是標準。</li>
+    <li><strong>把限制做成可以親手操作的東西。</strong>與其用文字寫「EMD 有可重現性問題」，不如給一個 SD 滑桿，讓人自己拉出不同的分解結果；與其描述「模態混疊」，不如讓人看著噪音把混在一起的尺度撐開。</li>
+    <li><strong>整夜資料只做描述，不做分類。</strong>用一個人一夜的資料訓練分類器沒有統計意義，還容易讓人以為看到了泛化能力。所以第 6 節只呈現特徵與分期的關係，並在顯眼處寫明它不是什麼。</li>
+    <li><strong>承認查證後的空白。</strong>沒找到 HHSA 直接用於睡眠 EEG 的期刊論文，就寫「沒找到」，並把它列為開放問題，而不是含糊帶過或硬湊一篇相近的充數。</li>
   </ol>
 
   <h3>關於黃鍔院士（僅列可查證事實）</h3>
